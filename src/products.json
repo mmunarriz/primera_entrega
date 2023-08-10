@@ -4,7 +4,7 @@
     "description": "descripcion del producto",
     "category": "cat1",
     "price": 200,
-    "code": "abc100",
+    "code": "abc101",
     "stock": 10,
     "id": 1,
     "status": true,
@@ -15,7 +15,7 @@
     "description": "descripcion del producto",
     "category": "cat1",
     "price": 200,
-    "code": "abc101",
+    "code": "abc102",
     "stock": 10,
     "id": 2,
     "status": true,
@@ -26,7 +26,7 @@
     "description": "descripcion del producto",
     "category": "cat1",
     "price": 200,
-    "code": "abc102",
+    "code": "abc103",
     "stock": 10,
     "thumbnails": [
       "img1.jpg",
@@ -34,6 +34,34 @@
       "img3.jpg"
     ],
     "id": 3,
+    "status": true
+  },
+  {
+    "title": "producto",
+    "description": "descripcion del producto",
+    "category": "cat1",
+    "price": 200,
+    "code": "abc104",
+    "stock": 10,
+    "thumbnails": [
+      "img1.jpg"
+    ],
+    "id": 4,
+    "status": true
+  },
+  {
+    "title": "producto",
+    "description": "descripcion del producto",
+    "category": "cat1",
+    "price": 200,
+    "code": "abc105",
+    "stock": 10,
+    "thumbnails": [
+      "img1.jpg",
+      "img2.jpg",
+      "img3.jpg"
+    ],
+    "id": 5,
     "status": true
   }
 ]

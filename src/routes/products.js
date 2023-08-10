@@ -14,14 +14,13 @@ router.get("/", async (req, res) => {
         // Si se recibió el param "limit", devuelve el número de productos solicitados
         if (limit) {
             const limitedProducts = products.slice(0, parseInt(limit));
-            res.send(limitedProducts);
+            res.status(200).send(limitedProducts);
         } else {
             // Si no se recibió el param "limit", devuelve todos los productos
-            res.send(products);
+            res.status(200).send(products);
         }
     } catch (error) {
-        console.error("Error al leer el archivo products.json:", error);
-        res.send({ error: "Error al obtener los productos" });
+        res.status(400).send({ error: error.message });
     }
 });
 
@@ -37,13 +36,12 @@ router.get("/:pid", async (req, res) => {
 
         // Si el producto existe lo devuelve, si no devuelve un mensaje de error
         if (producto) {
-            res.send(producto);
+            res.status(200).send(producto);
         } else {
-            res.send({ error: "Producto no encontrado" });
+            res.status(200).send({ error: "Producto no encontrado" });
         }
     } catch (error) {
-        console.error("Error al leer el archivo products.json:", error);
-        res.send({ error: "Error al obtener el producto" });
+        res.status(400).send({ error: error.message });
     }
 });
 
@@ -53,6 +51,14 @@ router.post("/", async (req, res) => {
         const products = JSON.parse(data);
 
         // Recibe un objeto JSON con los datos del nuevo producto
+        // Verifica que los campos obligatorios esten presentes
+        const requiredFields = ["title", "description", "category", "price", "code", "stock"];
+        for (const field of requiredFields) {
+            if (!req.body[field]) {
+                throw new Error(`El campo '${field}' es obligatorio.`);
+            }
+        }
+
         // Verifica si el "code" recibido ya existe en algún producto
         const newProductCode = req.body.code;
         const isCodeExist = products.some(product => product.code === newProductCode);
@@ -64,14 +70,6 @@ router.post("/", async (req, res) => {
         // Busca el último id existente y genera el nuevo id
         const lastProductId = products.length > 0 ? products[products.length - 1].id : 0;
         const newId = lastProductId + 1;
-
-        // Verifica que los campos obligatorios esten presentes
-        const requiredFields = ["title", "description", "category", "price", "code", "stock"];
-        for (const field of requiredFields) {
-            if (!req.body[field]) {
-                throw new Error(`El campo '${field}' es obligatorio.`);
-            }
-        }
 
         // Agrega el nuevo 'id' al objeto del nuevo producto
         // Configura 'status' como true por defecto
