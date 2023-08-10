@@ -41,19 +41,6 @@
     "description": "descripcion del producto",
     "category": "cat1",
     "price": 200,
-    "code": "abc104",
-    "stock": 10,
-    "thumbnails": [
-      "img1.jpg"
-    ],
-    "id": 4,
-    "status": true
-  },
-  {
-    "title": "producto",
-    "description": "descripcion del producto",
-    "category": "cat1",
-    "price": 200,
     "code": "abc105",
     "stock": 10,
     "thumbnails": [
