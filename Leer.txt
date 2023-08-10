@@ -1,0 +1,26 @@
+Ejecutar con: npm run dev
+
+Ejemplos:
+Mostrar todos los productos:
+GET http://localhost:8080/api/products
+
+Mostrar solo 3 productos:
+GET http://localhost:8080/api/products?limit=3
+
+Mostrar solo el producto con id=5
+GET http://localhost:8080/api/products/5
+
+Agregar un producto:
+POST http://localhost:8080/api/products
+
+        Ejemplo: 
+            {
+                "title": "producto",
+                "description": "descripcion del producto",
+                "category": "cat1",
+                "price": 200,
+                "code": "abc102",
+                "stock": 10,
+                "thumbnails": ["img1.jpg", "img2.jpg", "img3.jpg"]
+            }
+
