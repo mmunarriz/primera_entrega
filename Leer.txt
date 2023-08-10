@@ -1,3 +1,6 @@
+Instrucciones:
+--------------
+
 Ejecutar con: npm run dev
 
 Ejemplos:
