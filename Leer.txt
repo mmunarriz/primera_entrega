@@ -16,7 +16,7 @@ GET http://localhost:8080/api/products/5
 Agregar un producto:
 POST http://localhost:8080/api/products
 
-        Ejemplo: 
+        Body ejemplo: 
             {
                 "title": "producto",
                 "description": "descripcion del producto",
@@ -26,4 +26,21 @@ POST http://localhost:8080/api/products
                 "stock": 10,
                 "thumbnails": ["img1.jpg", "img2.jpg", "img3.jpg"]
             }
+
+Actualizar un producto:
+PUT http://localhost:8080/api/products/3
+
+        Body ejemplo: 
+            {
+                "title": "producto",
+                "description": "descripcion del producto",
+                "category": "cat1",
+                "price": 100,
+                "code": "abc104",
+                "stock": 10,
+                "thumbnails": ["img1.jpg", "img2.jpg", "img3.jpg"]
+            }
+
+Eliminar un producto:
+DELETE http://localhost:8080/api/products/4
 

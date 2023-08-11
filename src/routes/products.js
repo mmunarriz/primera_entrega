@@ -112,6 +112,12 @@ router.put("/:pid", async (req, res) => {
         // Obtener el producto actual
         const existingProduct = products[index];
 
+        // Verificar si el "code" recibido ya existe en otro producto, (excepto el producto actual)
+        const codeExists = products.some((product, i) => i !== index && product.code === req.body.code);
+        if (codeExists) {
+            return res.status(400).send({ error: "El código ya está en uso por otro producto" });
+        }
+
         // Actualizar campos del producto con los valores del body
         const updatedProduct = {
             ...existingProduct,
