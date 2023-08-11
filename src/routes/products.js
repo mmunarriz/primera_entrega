@@ -6,7 +6,7 @@ const router = Router();
 router.get("/", async (req, res) => {
     try {
         // Leer los datos del archivo JSON
-        const data = await fs.readFile("./src/products.json", "utf8");
+        const data = await fs.readFile("./src/productos.json", "utf8");
         const products = JSON.parse(data);
 
         // Lee el valor del param "limit" (si existe)
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 router.get("/:pid", async (req, res) => {
     try {
         // Leer los datos del archivo JSON
-        const data = await fs.readFile("./src/products.json", "utf8");
+        const data = await fs.readFile("./src/productos.json", "utf8");
         const products = JSON.parse(data);
 
         const pid = parseInt(req.params.pid);
@@ -50,7 +50,7 @@ router.get("/:pid", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         // Leer los datos del archivo JSON
-        const data = await fs.readFile("./src/products.json", "utf8");
+        const data = await fs.readFile("./src/productos.json", "utf8");
         const products = JSON.parse(data);
 
         // Recibe un objeto JSON con los datos del nuevo producto
@@ -74,9 +74,17 @@ router.post("/", async (req, res) => {
         const lastProductId = products.length > 0 ? products[products.length - 1].id : 0;
         const newId = lastProductId + 1;
 
-        // Agrega el nuevo 'id' al objeto del nuevo producto
-        // Configura 'status' como true por defecto
-        const newProduct = { ...req.body, id: newId, status: true };
+        // Crear el nuevo objeto del producto
+        const newProduct = {
+            id: newId,
+            status: true,
+            title: req.body.title,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            code: req.body.code,
+            stock: req.body.stock,
+        };
 
         // Verifica si se envió 'thumbnails' (campo no obligatorio), si no se envió asigna un array vacío
         if (!req.body.thumbnails) {
@@ -86,7 +94,7 @@ router.post("/", async (req, res) => {
         products.push(newProduct);
 
         // Guardar los datos en el archivo JSON
-        await fs.writeFile("./src/products.json", JSON.stringify(products, null, 2), "utf8");
+        await fs.writeFile("./src/productos.json", JSON.stringify(products, null, 2), "utf8");
 
         res.status(200).send({ message: "Producto agregado exitosamente" });
     } catch (error) {
@@ -99,7 +107,7 @@ router.put("/:pid", async (req, res) => {
         const pid = parseInt(req.params.pid);
 
         // Leer los datos del archivo JSON
-        const data = await fs.readFile("./src/products.json", "utf8");
+        const data = await fs.readFile("./src/productos.json", "utf8");
         const products = JSON.parse(data);
 
         // Encontrar el índice del producto en la lista por su "id"
@@ -135,7 +143,7 @@ router.put("/:pid", async (req, res) => {
         products[index] = updatedProduct;
 
         // Guardar los datos actualizados en el archivo JSON
-        await fs.writeFile("./src/products.json", JSON.stringify(products, null, 2));
+        await fs.writeFile("./src/productos.json", JSON.stringify(products, null, 2));
 
         res.status(200).send({ message: "Producto actualizado exitosamente" });
     } catch (error) {
@@ -148,7 +156,7 @@ router.delete("/:pid", async (req, res) => {
         const pid = parseInt(req.params.pid);
 
         // Leer los datos del archivo JSON
-        const data = await fs.readFile("./src/products.json", "utf8");
+        const data = await fs.readFile("./src/productos.json", "utf8");
         const products = JSON.parse(data);
 
         // Encontrar el índice del producto en la lista por su "id"
@@ -162,7 +170,7 @@ router.delete("/:pid", async (req, res) => {
         const deletedProduct = products.splice(index, 1)[0];
 
         // Guardar los datos actualizados en el archivo JSON
-        await fs.writeFile("./src/products.json", JSON.stringify(products, null, 2));
+        await fs.writeFile("./src/productos.json", JSON.stringify(products, null, 2));
 
         res.status(200).send({ message: "Producto eliminado exitosamente" });
     } catch (error) {

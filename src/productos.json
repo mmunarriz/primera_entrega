@@ -26,7 +26,7 @@
     "description": "descripcion del producto",
     "category": "cat1",
     "price": 100,
-    "code": "abc103",
+    "code": "abc109",
     "stock": 10,
     "thumbnails": [
       "img1.jpg",
@@ -49,5 +49,45 @@
     ],
     "id": 5,
     "status": true
+  },
+  {
+    "id": 6,
+    "status": true,
+    "title": "producto",
+    "description": "descripcion del producto",
+    "category": "cat1",
+    "price": 200,
+    "code": "abc104",
+    "stock": 10
+  },
+  {
+    "id": 7,
+    "status": true,
+    "title": "producto",
+    "description": "descripcion del producto",
+    "category": "cat1",
+    "price": 200,
+    "code": "abc107",
+    "stock": 10
+  },
+  {
+    "id": 8,
+    "status": true,
+    "title": "producto",
+    "description": "descripcion del producto",
+    "category": "cat1",
+    "price": 200,
+    "code": "abc108",
+    "stock": 10
+  },
+  {
+    "id": 9,
+    "status": true,
+    "title": "producto",
+    "description": "descripcion del producto",
+    "category": "cat1",
+    "price": 200,
+    "code": "abc110",
+    "stock": 10
   }
 ]
