@@ -1,19 +1,33 @@
+
+# Primera entrega:
+
+Se desarrollará un servidor que contenga los endpoints y servicios necesarios para gestionar los productos y carritos de compra en el e-commerce.
+
+
 Instrucciones:
 --------------
 
-Ejecutar con: npm run dev
+Instalar dependencias: npm i
 
-Ejemplos:
+Ejecutar: npm run dev
+
+Ejemplos (products):
+--------------------
+
 Listar productos:
+
 GET http://localhost:8080/api/products
 
 Listar productos (con limit):
+
 GET http://localhost:8080/api/products?limit=3
 
-Listar un producto específico
+Listar un producto específico:
+
 GET http://localhost:8080/api/products/5
 
 Agregar un producto:
+
 POST http://localhost:8080/api/products
 
         Body ejemplo: 
@@ -28,6 +42,7 @@ POST http://localhost:8080/api/products
             }
 
 Actualizar un producto específico:
+
 PUT http://localhost:8080/api/products/3
 
         Body ejemplo: 
@@ -42,7 +57,11 @@ PUT http://localhost:8080/api/products/3
             }
 
 Eliminar un producto:
+
 DELETE http://localhost:8080/api/products/4
+
+Ejemplos (carts):
+--------------------
 
 Crear un nuevo carrito:
 POST http://localhost:8080/api/carts
@@ -57,4 +76,5 @@ POST http://localhost:8080/api/carts/2/product/7
             {
                 "quantity": 8
             }
+
 
