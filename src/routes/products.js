@@ -3,6 +3,7 @@ import fs from "fs/promises";
 
 const router = Router();
 
+// Listar productos
 router.get("/", async (req, res) => {
     try {
         // Leer los datos del archivo JSON
@@ -25,12 +26,14 @@ router.get("/", async (req, res) => {
     }
 });
 
+// Listar un producto específico
 router.get("/:pid", async (req, res) => {
     try {
         // Leer los datos del archivo JSON
         const data = await fs.readFile("./src/productos.json", "utf8");
         const products = JSON.parse(data);
 
+        // Obtener el ID del producto de los parámetros de la ruta
         const pid = parseInt(req.params.pid);
 
         // Busca el producto en la lista por su "id"
@@ -40,13 +43,14 @@ router.get("/:pid", async (req, res) => {
         if (producto) {
             res.status(200).send(producto);
         } else {
-            res.status(200).send({ error: "Producto no encontrado" });
+            res.status(404).send({ error: "Producto no encontrado" });
         }
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
 });
 
+// Agregar un producto
 router.post("/", async (req, res) => {
     try {
         // Leer los datos del archivo JSON
@@ -102,6 +106,7 @@ router.post("/", async (req, res) => {
     }
 });
 
+// Actualizar un producto
 router.put("/:pid", async (req, res) => {
     try {
         const pid = parseInt(req.params.pid);
@@ -151,6 +156,7 @@ router.put("/:pid", async (req, res) => {
     }
 });
 
+// Eliminar un producto
 router.delete("/:pid", async (req, res) => {
     try {
         const pid = parseInt(req.params.pid);

@@ -4,13 +4,13 @@ Instrucciones:
 Ejecutar con: npm run dev
 
 Ejemplos:
-Mostrar todos los productos:
+Listar productos:
 GET http://localhost:8080/api/products
 
-Mostrar solo 3 productos:
+Listar productos (con limit):
 GET http://localhost:8080/api/products?limit=3
 
-Mostrar solo el producto con id=5
+Listar un producto específico
 GET http://localhost:8080/api/products/5
 
 Agregar un producto:
@@ -27,7 +27,7 @@ POST http://localhost:8080/api/products
                 "thumbnails": ["img1.jpg", "img2.jpg", "img3.jpg"]
             }
 
-Actualizar un producto:
+Actualizar un producto específico:
 PUT http://localhost:8080/api/products/3
 
         Body ejemplo: 
@@ -43,4 +43,18 @@ PUT http://localhost:8080/api/products/3
 
 Eliminar un producto:
 DELETE http://localhost:8080/api/products/4
+
+Crear un nuevo carrito:
+POST http://localhost:8080/api/carts
+
+Listar los productos de un carrito específico:
+GET http://localhost:8080/api/carts/2
+
+Agregar producto a un carrito:
+POST http://localhost:8080/api/carts/2/product/7
+
+        Body ejemplo: 
+            {
+                "quantity": 8
+            }
 
