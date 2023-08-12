@@ -6,7 +6,7 @@ Se desarrollará un servidor que contenga los endpoints y servicios necesarios p
 
 Instalar dependencias: npm i
 
-Ejecutar: npm run dev
+Ejecutar: npm start
 
 ## Ejemplos (products):
 
