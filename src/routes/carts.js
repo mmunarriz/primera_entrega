@@ -58,13 +58,26 @@ router.get("/:cid", async (req, res) => {
 // Agregar producto a un carrito
 router.post("/:cid/product/:pid", async (req, res) => {
     try {
-        // Leer los datos del archivo JSON
-        const data = await fs.readFile("./src/carrito.json", "utf8");
-        const carritos = JSON.parse(data);
+        // Leer los datos del archivo JSON de productos
+        const productsData = await fs.readFile("./src/productos.json", "utf8");
+        const products = JSON.parse(productsData);
 
-        // Obtener el ID del carrito y el ID del producto de los parámetros de la ruta
-        const carritoId = parseInt(req.params.cid);
+        // Obtener el ID del producto de los parámetros de la ruta
         const product = parseInt(req.params.pid);
+
+        // Verificar si el producto existe en el archivo de productos
+        const existingProduct = products.find(prod => prod.id === product);
+
+        if (!existingProduct) {
+            return res.status(404).send({ message: "Producto inexistente" });
+        }
+
+        // Leer los datos del archivo JSON de carritos
+        const cartData = await fs.readFile("./src/carrito.json", "utf8");
+        const carritos = JSON.parse(cartData);
+
+        // Obtener el ID del carrito de los parámetros de la ruta
+        const carritoId = parseInt(req.params.cid);
 
         // Obtener la cantidad del producto
         const { quantity } = req.body;
@@ -78,11 +91,11 @@ router.post("/:cid/product/:pid", async (req, res) => {
 
         // Agregar un nuevo objeto de producto al arreglo "products" dentro del carrito
         // Verificar si el producto ya existe en el carrito
-        const existingProduct = carrito.products.find(prod => prod.product === product);
+        const existingProductInCart = carrito.products.find(prod => prod.product === product);
 
-        if (existingProduct) {
+        if (existingProductInCart) {
             // Si el producto ya existe, incrementar el campo quantity
-            existingProduct.quantity += quantity;
+            existingProductInCart.quantity += quantity;
         } else {
             // Si el producto no existe, agregarlo al carrito
             carrito.products.push({ product, quantity });
